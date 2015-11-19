@@ -1,0 +1,30 @@
+/* Sets the width of the container to allow 16 cells on a line, each with a 50x50px size. */
+#container {
+	width: 800px;
+	height: 800px;
+	margin: 30px auto;
+	border: 3px solid #666;
+	background-color: black;
+}
+
+#navbar {
+	width: 800px;
+	padding-top: 30px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/* Creates divs with no margins or padding, so they're all next to each other. */
+.cell {
+	margin: 0px;
+	padding: 0px;
+	width: 50px;
+	height: 50px;
+	background-color: #f0f0f0;
+	float: left;
+}
+
+/* Simple class to change the cells to a darker gray when moused over
+.highlighted {
+	background-color: #666;
+} */
