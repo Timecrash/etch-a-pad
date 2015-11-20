@@ -1,5 +1,3 @@
-//Also add another button,  switching between 'press to highlight' and 'highlight on hover. Might be cool as a shitty pixel editor.
-
 //Initial number of cells, for a 16x16 grid.
 var totalCells = 256;
 
@@ -12,14 +10,14 @@ function createGrid(maxCells, mode)
 	}
 
 	$(".cell").hover( function() {
-		//Mode selection. 1 = monochrome, 2 = random color, 3 = fading
+    
+		//Mode selection. 1 = monochrome, 2 = random color, 3 = fading gradient
 		switch(mode) {
 			case 1:
 				$(this).css("background-color", "#666");
-				//if ( $(this).css("background-color") === "#f0f0f0" ) { $(this).css("background-color", "#666"); }
 				break;
 			case 2:
-				var hue = "rgb(" + (Math.floor(Math.random() * 256)) + "," + (Math.floor(Math.random() * 256)) + "," + (Math.floor(Math.random() * 256)) + ")";
+        var hue = "rgb(" + (Math.floor(Math.random() * 256)) + "," + (Math.floor(Math.random() * 256)) + "," + (Math.floor(Math.random() * 256)) + ")";
 				$(this).css("background-color", hue);
 				break;
 			case 3:
@@ -42,17 +40,14 @@ function clearGrid()
 function resetGrid(mode)
 {
 	clearGrid();
-	var cellNumber = window.prompt("Please enter a new grid size, e.g. 16 for a 16x16 grid.", 16);
-	totalCells = Math.pow(cellNumber, 2);
-	var cellSize =  800 / cellNumber;
+
+	var cellNumber = window.prompt("Please enter a new grid size, e.g. 16 for a 16x16 grid.", 16); //Asks user for width/height of grid, in 'pixels'
+	totalCells = Math.pow(cellNumber, 2); //Gets total cells required for that, by squaring the input number
+	var cellSize =  800 / cellNumber; //Gets the necessary width/height of the individual cells
 
 	$("#container").empty();
 
-	createGrid(totalCells,mode);
+	createGrid(totalCells,mode); //Depending on what button was pressed, this changes how hovering works
 
-	$("#container > div").css({ "width": cellSize, "height": cellSize });
+	$("#container > div").css({ "width": cellSize, "height": cellSize }); //Sets the cell sizes all at once, to help with speed.
 }
-
-//This creates a super neat hover effect, but only while currently being hovered over. Still visually interesting though.
-//*Remove before pushing to GitHub*
-//$(".cell").hover( function() { $(this).toggleClass("highlighted") });
